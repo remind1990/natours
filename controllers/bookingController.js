@@ -51,7 +51,7 @@ exports.webhookCheckout = (req, res, next) => {
 
   let event;
   try {
-    const rawBody = req.rawBody.stringify();
+    const rawBody = req.bodyRaw.toString();
     event = stripe.webhooks.constructEvent(
       rawBody,
       signature,
