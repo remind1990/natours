@@ -7,6 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const compression = require('compression');
 const cors = require('cors');
 
@@ -17,6 +18,7 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controllers/bookingController');
 
 const app = express();
 
@@ -35,7 +37,7 @@ app.use(cors());
 // }))
 // Serving static files
 app.options('*', cors());
-// or specific route only app.options('/api/vi/tours/:id', cors()); 
+// or specific route only app.options('/api/vi/tours/:id', cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set security HTTP headers
@@ -54,6 +56,11 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter);
 
+app.post(
+  '/webhook-checkout',
+  bodyParser.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
