@@ -88,10 +88,10 @@ body {
 
 .alert {
   position: fixed;
-  top: 0;
+  top: 50%;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   z-index: 9999;
   color: #fff;
   font-size: 1.8rem;
@@ -1221,7 +1221,7 @@ body {
   margin: 0 auto;
 }
 
-.login-form {
+.login-form, .signIn-form {
   margin: 0 auto;
   max-width: 55rem;
   background-color: #fff;

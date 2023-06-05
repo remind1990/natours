@@ -5,6 +5,7 @@ import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
 import { showAlert } from './alerts';
+import { signIn } from './signIn';
 
 // DOM ELEMENTS
 const mapBox = document.getElementById('map');
@@ -13,6 +14,7 @@ const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
+const signInForm = document.querySelector('.form--signIn');
 
 // DELEGATION
 if (mapBox) {
@@ -27,6 +29,20 @@ if (loginForm)
     const password = document.getElementById('password').value;
     login(email, password);
   });
+if (signInForm) {
+  signInForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('passwordConfirm').value;
+    if (password !== passwordConfirm) {
+      showAlert('error', "Passwords doesn't match", 3);
+    } else {
+      signIn(name, email, password, passwordConfirm);
+    }
+  });
+}
 
 if (logOutBtn) logOutBtn.addEventListener('click', logout);
 
