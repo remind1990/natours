@@ -15,6 +15,8 @@ const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
 const signInForm = document.querySelector('.form--signIn');
+const sidebarToggle = document.querySelector('.sidebar-toggle');
+const sidebar = document.querySelector('.user-view__menu');
 
 // DELEGATION
 if (mapBox) {
@@ -84,3 +86,14 @@ if (bookBtn)
 const alertMessage = document.querySelector('body').dataset.alert;
 
 if (alertMessage) showAlert('success', alertMessage, 10);
+
+if (sidebarToggle) {
+  sidebarToggle.addEventListener('click', e => {
+    sidebar.classList.toggle('open');
+    const targetElements = document.querySelectorAll('.side-nav');
+    targetElements.forEach(function(element) {
+      element.classList.toggle('show');
+    });
+    document.querySelector('.admin-nav__heading').classList.toggle('show');
+  });
+}
