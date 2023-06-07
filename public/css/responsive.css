@@ -6,6 +6,40 @@
         grid-template-columns: repeat(1, 1fr);
         grid-gap: 3rem;
     }
+    .wrapper {
+        padding: 6rem 0;
+    }
+    .section-header { 
+        height: 74vw;
+    }
+    .section-pictures {
+        height: 20vh;
+    }
+    .heading-primary {
+        font-size: 2.8rem;
+    }
+    .section-description {
+        flex-direction: column;
+    }
+    .section-cta {
+        padding-bottom: 3rem;
+        padding-top: calc(5rem + var(--section-rotate));
+        height: fit-content;
+    }
+    .cta {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+    }
+    .cta__img {
+        position: initial;
+    }
+    .cta__content {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
     .nav--user {
         flex: 100%;
         display: flex;
